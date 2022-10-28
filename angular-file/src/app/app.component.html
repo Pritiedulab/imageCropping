@@ -1,0 +1,75 @@
+<!-- <div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-2 boxModel">
+                    <div class="circle">
+
+                    </div>
+                    <h5 class="text-center mt-4 add-change-img"(click)="lgModal.show()" >Add/change image</h5>
+
+                </div>
+            </div><button class="btn btn-primary" (click)="lgModal.show()">Large modal</button>
+        </div>
+    </div>
+</div> --> 
+<div bsModal #lgModal="bs-modal"
+ class="modal fade" tabindex="-1"
+     role="dialog" 
+     aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-white">
+        <input type="file" (change)="fileChangeEvent($event)">
+        <!-- <h4 id="dialog-sizes-
+        name1" class="modal-title pull-right">Large modal</h4>
+        <button type="button" class="btn-close close pull-right"
+         (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true"
+           class="visually-hidden">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+       <div class="row">
+        <div class="col-md-12 d-flex justify-content-center" *ngIf="imageChangedEvent">
+            <div class="btn-group" role="group" aria-label="basic">
+                <button type="button" class="btn btn-primary" (click)="rotate()" [ngClass]="rotateStatus ? 'active':''"> left</button>
+                <button type="button" class="btn btn-primary"  (click)="fliphorizontal()" [ngClass]=" fliphorizontalStatus? 'active':''">flipX</button>
+                <button type="button" class="btn btn-primary" (click)="flipvertical()"  [ngClass]=" flipverticalStatus ? 'active':''"> flipy</button>
+                <!-- <button type="button" class="btn btn-primary"   (click)="discard()"  [ngClass]="discardStatus ? 'active':''"> discard</button> -->
+
+            </div>
+            <!-- <button type="button" class="btn btn-dark" (click)="item.upload()">Upload</button> -->
+        </div>
+
+        <!-- <angular-file-uploader
+        [config]="afuConfig">
+  </angular-file-uploader> -->
+
+
+
+        <div class="col-md-12">
+            <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="4 / 3"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            [transform]="transform"
+            (cropperReady)="cropperReady()"
+            (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+          
+        <div class="col-md-12 mt-5 d-flex justify-content-center">
+            <img [src]="croppedImage" class="img-fluid" *ngIf=" imageChangedEvent">
+        </div>
+        <div class="col-md-12 mt-5 d-flex justify-content-center">
+            <button type="button" class="btn btn-danger" (click)="saveImage()" *ngIf=" imageChangedEvent">croppedImage</button>
+        </div>
+        </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
